@@ -25,7 +25,12 @@
 		FROM users
 		WHERE id=#{id}
 	</select>
-	
+	<select id="getData" parameterType="string" 
+			resultType="userDto">
+		SELECT id, pwd, email, <include refid="dateFormat"/>
+		FROM users
+		WHERE id=#{id}
+	</select>
 </mapper>
 
 

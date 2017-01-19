@@ -76,6 +76,11 @@ public class UsersController {
 		
 		 return  usersService.canUseId(inputId);
 	}
-
+	@RequestMapping("users/private/info")
+	public ModelAndView userInfo(@RequestParam String id){
+		ModelAndView mView = usersService.getData(id);
+		
+		return mView;
+	}
 	
 }

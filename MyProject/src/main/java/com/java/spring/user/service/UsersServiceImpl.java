@@ -30,8 +30,11 @@ public class UsersServiceImpl implements UsersService{
 
 	@Override
 	public ModelAndView getData(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		UsersDto dto = usersDao.getData(id);
+		ModelAndView mView = new ModelAndView();
+		mView.addObject("dto",dto);
+		mView.setViewName("users/private/info");
+		return mView;
 	}
 
 	@Override
