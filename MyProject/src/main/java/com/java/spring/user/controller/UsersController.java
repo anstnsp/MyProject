@@ -77,10 +77,43 @@ public class UsersController {
 		 return  usersService.canUseId(inputId);
 	}
 	@RequestMapping("users/private/info")
-	public ModelAndView userInfo(@RequestParam String id){
+	public ModelAndView userInfo(HttpSession session){
+		String id = (String)session.getAttribute("id");
 		ModelAndView mView = usersService.getData(id);
 		
 		return mView;
 	}
+	@RequestMapping("users/private/delete")
+	public String deleteUsers(HttpSession session){
+		String id = (String)session.getAttribute("id");
+		session.invalidate();
+		usersService.delete(id);
+		
+		return "redirect:/home.do";
+	}
+	@RequestMapping("users/private/updateform")
+	public ModelAndView updateForm(HttpServletRequest request){
+		String id = (String)request.getSession().getAttribute("id");
+		ModelAndView mView=usersService.getData(id);
+		
+		mView.setViewName("users/private/updateform");
+		return mView;
+
+		
+	}
 	
+	@RequestMapping("users/private/update")
+	public String updateUsers(HttpServletRequest request){
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		String email =request.getParameter("email");
+		String regdate =request.getParameter("regdate");
+		
+		UsersDto dto = new UsersDto(id,pwd,email,regdate);
+		 usersService.update(dto);
+		 
+		request.setAttribute("msg", id+" 회원 정보를 수정함");
+		request.setAttribute("redirectUri", request.getContextPath());
+		return "users/alert";
+	}
 }

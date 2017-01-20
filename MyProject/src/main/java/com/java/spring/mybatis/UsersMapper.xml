@@ -31,6 +31,17 @@
 		FROM users
 		WHERE id=#{id}
 	</select>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM users
+		WHERE id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="userDto">
+		UPDATE users
+		SET pwd=#{pwd}, email=#{email}
+		WHERE id=#{id}
+	</update>
 </mapper>
 
 
