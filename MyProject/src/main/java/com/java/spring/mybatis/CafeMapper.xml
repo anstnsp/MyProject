@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe">
+		<sql id="cafeColumns">
+		num,writer,title,content,viewCount,
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	</sql>
+	<select id="getList" resultType="cafeDto" parameterType="cafeDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM rnum
+			FROM (SELECT num,writer,title,content,viewCount,regdate
+				  FROM board_cafe
+				  ORDER BY num DESC
+				  ) result1
+			)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
