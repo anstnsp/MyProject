@@ -112,13 +112,10 @@ public class UsersController {
 	}
 	
 	@RequestMapping("users/private/update")
-	public String updateUsers(HttpServletRequest request){
-		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");
-		String email =request.getParameter("email");
-		String regdate =request.getParameter("regdate");
+	public String updateUsers(@ModelAttribute UsersDto dto, HttpServletRequest request){
 		
-		UsersDto dto = new UsersDto(id,pwd,email,regdate);
+		String id = dto.getId();
+		
 		 usersService.update(dto);
 		 
 		request.setAttribute("msg", id+" 회원 정보를 수정함");

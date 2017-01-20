@@ -7,7 +7,7 @@
 <meta charset="UTF-8"/>
 <title>views/cafe/list.jsp</title>
 <link rel="stylesheet" 
-	href="${pageContext.request.contextPath }/resource/css/bootstrap.css" />
+	href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 </head>
 <body>
 <div class="container">
