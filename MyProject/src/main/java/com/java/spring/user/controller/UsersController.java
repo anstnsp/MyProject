@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,10 +33,10 @@ public class UsersController {
 	@Autowired
 	private CafeService cafeService;
 	
-	@RequestMapping("/users/signup_form")
-	public String signupform(){
+	@RequestMapping("/users/{url}")
+	public void signupAndsigninForm(@PathVariable String url){
 		
-		return "users/signup_form";
+		
 	}
 	
 	@RequestMapping("/users/signup")
@@ -45,10 +46,7 @@ public class UsersController {
 		return "redirect:/home.do";
 	}
 	
-	@RequestMapping("users/signin_form")
-	public String signinform(){
-		return "users/signin_form";
-	}
+	
 	
 	@RequestMapping("users/signin")
 	public String signin(HttpServletRequest request){
@@ -166,4 +164,6 @@ public class UsersController {
 		return mView;
 				
 	}
+	@RequestMapping("/cafe/private/insertform")
+	public void cafeInsertForm(){}
 }

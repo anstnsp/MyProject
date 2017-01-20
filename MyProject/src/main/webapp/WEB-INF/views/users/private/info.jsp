@@ -8,6 +8,7 @@
 <title>views/users/private/info.jsp</title>
 </head>
 <body>
+<a href=""></a>
 <h3>회원 가입된 정보 입니다.</h3>
 <table>
 	<thead>
